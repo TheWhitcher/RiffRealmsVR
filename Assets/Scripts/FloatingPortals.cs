@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class floating_portal : MonoBehaviour
+public class FloatingPortals : MonoBehaviour
 {
 
     private float maxTravel = 0.2f;
