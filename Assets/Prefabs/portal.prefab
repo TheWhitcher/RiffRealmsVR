@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 4547267188673565922}
   - component: {fileID: 355881125628196165}
   - component: {fileID: 3911726395368492718}
+  - component: {fileID: 8315352820845683052}
   m_Layer: 0
   m_Name: Swirl
   m_TagString: Untagged
@@ -212,6 +213,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8315352820845683052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228469101469608166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c6c2b78fab63c04a8a3b80b09eb403d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  twirlStrength: 10
+  scale: 0
+  speed: 0.5
+  disolveAmount: 0
+  controllerLineRenderer: {fileID: 0}
 --- !u!1 &5000158232551963065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5050,7 +5068,6 @@ GameObject:
   m_Component:
   - component: {fileID: 386063399154982036}
   - component: {fileID: 3215041318608519892}
-  - component: {fileID: 5904001942997843783}
   m_Layer: 0
   m_Name: portal
   m_TagString: Untagged
@@ -5091,31 +5108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e4b46b6de6b7b48a0847a47bfe1980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5904001942997843783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5570579322121514580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &7825775077155642403
 GameObject:
   m_ObjectHideFlags: 0

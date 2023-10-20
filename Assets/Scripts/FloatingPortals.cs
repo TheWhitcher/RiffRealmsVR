@@ -55,8 +55,6 @@ public class FloatingPortals : MonoBehaviour
             transform.position = new Vector3(positionX, positionY - distancePerFrame, positionZ);
         }
 
-        Debug.Log("Max: " + (initialPositionY + maxTravel).ToString());
-        Debug.Log("Min: " + (initialPositionY - minTravel).ToString());
         if ((transform.position.y >= initialPositionY + maxTravel || transform.position.y <= initialPositionY - minTravel) && Time.time >= changeCoolDown + currentTime)
         {
             currentTime = Time.time;
