@@ -1,9 +1,9 @@
 # RiffRealmsVR
 
 # Unity Asset Store Imports
-    Name: Fantasy Skybox FREE
-    Creator: Render Knight
-    Link: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
+    Name: Real Stars Skybox Lite
+    Creator: Geoff Dallimore
+    Link: https://assetstore.unity.com/packages/3d/environments/sci-fi/real-stars-skybox-lite-116333
 
     Name: Magic Effects FREE
     Creator: Hovl Studio
