@@ -12,6 +12,11 @@ public class PortalEffects : MonoBehaviour
     [SerializeField] float disolveAmount;
     [SerializeField] LineRenderer controllerLineRenderer;
 
+    private Material hitMaterial;
+    private float initialSpeed;
+    private float initialTwirlStrength;
+    private bool isSelected = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,50 +26,38 @@ public class PortalEffects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (controllerLineRenderer != null)
-        //{
-        //    Vector3 controllerPosition = controllerLineRenderer.transform.position;
-        //    Vector3 controllerForward = controllerLineRenderer.transform.forward;
-
-        //    Ray ray = new Ray(controllerPosition, controllerForward);
-        //    RaycastHit hit;
-
-        //    if (Physics.Raycast(ray, out hit))
-        //    {
-        //        if (hit.collider.gameObject.GetComponent<MeshRenderer>() == swirlRenderer)
-        //        {
-        //            Material hitMaterial = swirlRenderer.material;
-        //            hitMaterial.SetFloat("_Speed", speed);
-        //            hitMaterial.SetFloat("_TwirlStrength", twirlStrength);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        swirlRenderer.material.SetFloat("_Speed", 0.1f);
-        //        swirlRenderer.material.SetFloat("_TwirlStrength", 3f);
-        //    }
-        //}
-
-        // Used for testing
-        Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        RaycastHit hit2;
-
-        // Perform the raycast and check if it hits any collider
-        if (Physics.Raycast(ray2, out hit2))
+        if (controllerLineRenderer != null)
         {
-            if (hit2.collider.gameObject.GetComponent<MeshRenderer>() == swirlRenderer) {
-                Material hitMaterial = swirlRenderer.material;
-                Debug.Log(twirlStrength);
-                hitMaterial.SetFloat("_Speed", speed);
-                hitMaterial.SetFloat("_TwirlStrength", twirlStrength);
+            Vector3 controllerPosition = controllerLineRenderer.transform.position;
+            Vector3 controllerForward = controllerLineRenderer.transform.forward;
+
+            Ray ray = new Ray(controllerPosition, controllerForward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.GetComponent<MeshRenderer>() == swirlRenderer && !isSelected)
+                {
+                    isSelected = true;
+                    hitMaterial = swirlRenderer.material;
+
+                    initialSpeed = hitMaterial.GetFloat("_Speed");
+                    initialTwirlStrength = hitMaterial.GetFloat("_TwirlStrength");
+
+                    hitMaterial.SetFloat("_Speed", speed);
+                    hitMaterial.SetFloat("_TwirlStrength", twirlStrength);
+                }
             }
-        }
-        else
-        {
-            swirlRenderer.material.SetFloat("_Speed", 0.1f);
-            swirlRenderer.material.SetFloat("_TwirlStrength", 3f);
+            else
+            {
+                isSelected = false;
 
+                if (hitMaterial != null)
+                {
+                    hitMaterial.SetFloat("_Speed", initialSpeed);
+                    hitMaterial.SetFloat("_TwirlStrength", initialTwirlStrength);
+                }
+            }
         }
     }
 }
