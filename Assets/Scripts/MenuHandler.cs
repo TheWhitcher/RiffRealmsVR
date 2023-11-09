@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject optionsMenu;
+
     public void DeselectButton()
     {
         // Works but if the click is released outside the button it remains selected.
@@ -24,12 +27,14 @@ public class MenuHandler : MonoBehaviour
 
     public void OpenOptions()
     {
-        //  TODO open the options menu.
+        mainMenu?.SetActive(false);
+        optionsMenu.SetActive(true);
     }
 
     public void CloseOptions()
     {
-        // TODO close the options menu.
+        mainMenu?.SetActive(true);
+        optionsMenu.SetActive(false);
     }
 
     public void ExitButton()
