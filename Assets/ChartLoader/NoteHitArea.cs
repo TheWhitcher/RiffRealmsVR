@@ -21,6 +21,8 @@ public class NoteHitArea : MonoBehaviour
         if (note.tag == "Note")
         {
             Debug.Log("Destroy " + note.name);
+
+            Destroy(note.gameObject);
         }
 
     }
