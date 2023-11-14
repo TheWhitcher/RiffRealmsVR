@@ -8,6 +8,12 @@ public class CharLoadTest : MonoBehaviour
 {
     public static ChartReader chartReader;
 
+    [SerializeField] float noteDistance = 0;
+    Vector3 basePosition;
+    float baseX;
+    float baseY;
+    float baseZ;
+
     public Transform[] notePrefabs;
 
     private string chartPath = "Assets\\ChartLoader\\Gakusaku Shiki\\notes.chart";
@@ -15,6 +21,11 @@ public class CharLoadTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        baseX = transform.position.x;
+        baseY = transform.position.y;
+        baseZ = transform.position.z;
+        basePosition = transform.position;
+
         chartReader = new ChartReader();
         Chart hisWorldChart = chartReader.ReadChartFile(chartPath);
 
@@ -47,7 +58,9 @@ public class CharLoadTest : MonoBehaviour
                  * y = How high the notes are
                  * z = How far the notes are
                  */
-                point = new Vector3(i - 2f, 0f, note.Seconds);
+                Vector3 change = new Vector3(i - 2f, 0f, noteDistance + note.Seconds);
+
+                point = basePosition + change;
 
                 SpawnPrefab(notePrefabs[i], point);
             }
