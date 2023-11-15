@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using ChartLoader.NET.Utils;
 using ChartLoader.NET.Framework;
+using System.IO;
 
 public class CharLoadTest : MonoBehaviour
 {
     public static ChartReader chartReader;
 
+    [SerializeField] string folderPath = "Assets\\ChartLoader\\Gakusaku Shiki";
     [SerializeField] float noteDistance = 0;
+
     Vector3 basePosition;
     float baseX;
     float baseY;
@@ -16,11 +19,11 @@ public class CharLoadTest : MonoBehaviour
 
     public Transform[] notePrefabs;
 
-    private string chartPath = "Assets\\ChartLoader\\Gakusaku Shiki\\notes.chart";
-
     // Start is called before the first frame update
     void Start()
     {
+        string chartPath = folderPath + "\\notes.chart";
+
         baseX = transform.position.x;
         baseY = transform.position.y;
         baseZ = transform.position.z;
