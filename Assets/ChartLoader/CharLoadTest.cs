@@ -9,7 +9,7 @@ public class CharLoadTest : MonoBehaviour
 {
     public static ChartReader chartReader;
 
-    [SerializeField] string folderPath = "Assets\\ChartLoader\\Gakusaku Shiki";
+    [SerializeField] string folderPath = "";
 
     Vector3 basePosition;
     float baseX;
@@ -25,7 +25,7 @@ public class CharLoadTest : MonoBehaviour
     void Start()
     {
         string chartPath = folderPath + "\\notes.chart";
-        string audioPath = folderPath + "\\song.ogg";
+        //string audioPath = folderPath + "\\song.ogg";
 
         baseX = transform.position.x;
         baseY = transform.position.y;
