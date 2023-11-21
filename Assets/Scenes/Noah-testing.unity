@@ -613,8 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1abc552c51324b4593ec9af5ee5283b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  folderPath: Assets/ChartLoader/Gakusaku Shiki
-  noteDistance: 0
+  folderPath: Assets\ChartLoader\Gakusaku Shiki
   notePrefabs:
   - {fileID: 4400627473677722, guid: 504f06b592ee4c54284c21a11a2b9f00, type: 3}
   - {fileID: 4626359991842112, guid: c455f73df6e7e4740b71d6c548c2f2c1, type: 3}
@@ -622,7 +621,7 @@ MonoBehaviour:
   - {fileID: 4413157362768838, guid: 185e22c954007704a92bdb3b9305e941, type: 3}
   - {fileID: 4504917627061404, guid: 1005b4512f81e2f42ad707915f4b4ce8, type: 3}
   audioSource: {fileID: 81620281}
-  movementScript: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 86eb78e062752c245918ce7bd011f6fa, type: 3}
 --- !u!4 &1914500836
 Transform:
   m_ObjectHideFlags: 0

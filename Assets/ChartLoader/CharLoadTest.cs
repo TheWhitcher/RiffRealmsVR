@@ -10,7 +10,6 @@ public class CharLoadTest : MonoBehaviour
     public static ChartReader chartReader;
 
     [SerializeField] string folderPath = "Assets\\ChartLoader\\Gakusaku Shiki";
-    [SerializeField] float noteDistance = 0;
 
     Vector3 basePosition;
     float baseX;
@@ -19,13 +18,14 @@ public class CharLoadTest : MonoBehaviour
 
     public Transform[] notePrefabs;
     public AudioSource audioSource;
+    //public AudioClip audioClip;
     private NoteMovement movementScript;
 
     // Start is called before the first frame update
     void Start()
     {
         string chartPath = folderPath + "\\notes.chart";
-        //string audioPath = folderPath + "\\song.ogg";
+        string audioPath = folderPath + "\\song.ogg";
 
         baseX = transform.position.x;
         baseY = transform.position.y;
@@ -37,6 +37,15 @@ public class CharLoadTest : MonoBehaviour
         Note[] expertGuitarNotes = newChart.GetNotes("ExpertSingle");
 
         movementScript = gameObject.GetComponent<NoteMovement>();
+
+        // Set the audio
+        //LoadSong(audioPath);
+        //audioSource.clip = audioClip;
+
+        if (audioSource.clip == null)
+        {
+            Debug.LogError("No audio clip.");
+        }
 
         SpawnNotes(expertGuitarNotes);
         audioSource.Play();
@@ -83,6 +92,37 @@ public class CharLoadTest : MonoBehaviour
         Transform tmp = Instantiate(prefab);
         tmp.SetParent(transform);
         tmp.position = point;
+    }
+
+
+    private void LoadAudioClipFromFile(string path)
+    {
+        AudioClip audioClip = null;
+        WWW www = new WWW(path);
+        while (!www.isDone) { }
+        audioClip = www.GetAudioClip();
+
+        Debug.Log(path);
+
+        audioSource.clip = audioClip;
+    }
+
+    private void LoadSong(string path)
+    {
+        StartCoroutine(LoadSongCoroutine(path));
+    }
+
+    IEnumerator LoadSongCoroutine(string path)
+    {
+        AudioClip audioClip = null;
+        WWW www = new WWW(path);
+        yield return www;
+
+        audioClip = www.GetAudioClip();
+
+        Debug.Log(path);
+
+        audioSource.clip = audioClip;
     }
 
 }
