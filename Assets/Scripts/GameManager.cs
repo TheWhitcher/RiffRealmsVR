@@ -1,56 +1,88 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
+    // Serialized Fields
+    [SerializeField] const int POINTS = 100;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject endMenu;
+    [SerializeField] Animator loadingScreen;
+
+    [Header("Game UI")]
     [SerializeField] TextMeshProUGUI comboText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI multiplierText;
-    [SerializeField] const int POINTS = 100;
 
-    private int[] multiplierGoal = { 10, 20, 30, 40 };
+    [Header("End Menu")]
+    [SerializeField] TextMeshProUGUI finalScoreText;
+    [SerializeField] TextMeshProUGUI finalHitText;
+    [SerializeField] TextMeshProUGUI finalMissedText;
+    [SerializeField] TextMeshProUGUI finalHitPercentageText;
 
-    private bool setupState = false;
-    private bool playState = false;
-    private bool pauseState = false;
+    // Game States
+    private enum GameState
+    {
+        Setup,
+        Play,
+        Ending,
+        Paused
+    }
 
+    // Private Static Properties
     private static int[] multiplier = { 1, 2, 4, 8, 10 };
-    private static int currentMultiplier = 1;
-    private static int comboCounter = 0;
-    private static int scoreCounter = 0;
+    private static int currentMultiplier;
+    private static int comboCounter;
+    private static int scoreCounter;
+    private static int notesHit;
+    private static int notesMissed;
+    
+    // Private Properties
+    private GameState currentState;
+    private bool pausedState;
 
     // Start is called before the first frame update
     void Start()
     {
-        setupState = true;
         currentMultiplier = multiplier[0];
         comboCounter = 0;
         scoreCounter = 0;
+        notesHit = 0;
+        notesMissed = 0;
+        pausedState = false;
+        currentState = GameState.Setup;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (setupState)
+        switch (currentState)
         {
-            // TODO make sure notes and song are loaded and in sync before playstate.
-            setupState = false;
-            playState = true;
-        }
-        else if (playState)
-        {
-            SetMultiplier();
-            UpdateUI();
+            case GameState.Setup:
+                SetupHandler();
+                break;
+
+            case GameState.Play:
+                SetMultiplier();
+                UpdateUI(); 
+                break;
+
+            case GameState.Ending:
+                EndingHandler();
+                break;
+
+            case GameState.Paused:
+                PauseHandler();
+                break;
         }
 
-        if (pauseState)
-        {
-            // TODO handle pause state.
-        }
-
+        // Test inputs
         if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.H))
         {
             NoteHit();
@@ -60,15 +92,41 @@ public class GameManager : MonoBehaviour
         {
             NoteMiss();
         }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            ResetCombo();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            currentState = GameState.Paused;
+            pausedState = !pausedState;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            currentState = GameState.Ending;
+        }
     }
 
+    // Use on successful note hit. (Player strums with correct notes pressed)
     public static void NoteHit()
     {
         comboCounter++;
         scoreCounter += POINTS * currentMultiplier;
+        notesHit++;
     }
 
+    // Use when a note reaches the end of the hit area
     public static void NoteMiss()
+    {
+        notesMissed++;
+        ResetCombo();
+    }
+
+    // Use on a bad strum. (Player strums with incorrect notes pressed) 
+    public static void ResetCombo()
     {
         comboCounter = 0;
         currentMultiplier = multiplier[0];
@@ -101,5 +159,47 @@ public class GameManager : MonoBehaviour
         comboText.text = comboCounter.ToString();
         scoreText.text = scoreCounter.ToString();
         multiplierText.text = "x" + currentMultiplier.ToString();
+    }
+
+    private void SetupHandler()
+    {
+        AnimatorStateInfo stateInfo = loadingScreen.GetCurrentAnimatorStateInfo(0);
+
+        if(stateInfo.normalizedTime >= 1.0f)
+        {
+            currentState = GameState.Play;
+        }
+    }
+
+    private void EndingHandler()
+    {
+        int totalNotes = notesHit + notesMissed;
+        float hitPercentage = ((float)notesHit / totalNotes) * 100;
+
+        endMenu.SetActive(true);
+        finalScoreText.text = scoreCounter.ToString();
+        finalHitText.text = notesHit.ToString();
+        finalMissedText.text = notesMissed.ToString();
+        finalHitPercentageText.text = hitPercentage.ToString("#") + "%";
+    }
+
+    private void PauseHandler()
+    {
+        if (pausedState)
+        {
+            // Paused
+            pauseMenu.SetActive(true);
+        }
+        else
+        {
+            // UnPaused
+            pauseMenu.SetActive(false);
+        }
+    }
+
+    public void CloseClicked()
+    {
+        currentState = GameState.Paused;
+        pausedState = !pausedState;
     }
 }
