@@ -61,7 +61,7 @@ public class CharLoadTest : MonoBehaviour
                  * y = How high the notes are
                  * z = How far the notes are
                  */
-                Vector3 change = new Vector3(i - 2f, 0f, noteDistance + note.Seconds);
+                Vector3 change = new Vector3(i - 2f, 0f, note.Seconds);
 
                 point = basePosition + change;
 

@@ -150,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 86eb78e062752c245918ce7bd011f6fa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5adefc75b3367234f8a5115e13efff33, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -430,7 +430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1064716814}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 2.21, z: -7.83}
+  m_LocalPosition: {x: 0, y: 2.21, z: -1.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -537,7 +537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830857121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06377419, y: 0.2162, z: -6.8}
+  m_LocalPosition: {x: -0.06377419, y: 0.2162, z: 0}
   m_LocalScale: {x: 8, y: 0.1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1abc552c51324b4593ec9af5ee5283b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  folderPath: Assets/ChartLoader/Gakusaku Shiki
+  folderPath: Assets/ChartLoader/Billy Talent - Rusted From The Rain
   noteDistance: 0
   notePrefabs:
   - {fileID: 4400627473677722, guid: 504f06b592ee4c54284c21a11a2b9f00, type: 3}
@@ -629,7 +629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914500834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 175}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -648,4 +648,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29b833b9c132aa4e8dd7117c4c10b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -0.1
+  speed: 3.5

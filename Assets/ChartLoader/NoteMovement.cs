@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteMovement : MonoBehaviour
 {
 
-    [SerializeField] float speed = -0.1f;
+    [SerializeField] float speed = 1f;
 
     Vector3 basePosition;
 
@@ -22,8 +22,12 @@ public class NoteMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-        transform.position = basePosition + new Vector3(x,y,z);
+        //transform.position = basePosition + new Vector3(x,y,z);
+        //z += speed;
+    }
 
-        z += speed;
+    void Update()
+    {
+        transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
 }
