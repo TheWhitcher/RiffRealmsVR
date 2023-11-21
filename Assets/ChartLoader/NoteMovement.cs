@@ -5,7 +5,7 @@ using UnityEngine;
 public class NoteMovement : MonoBehaviour
 {
 
-    [SerializeField] float speed = 1f;
+    [SerializeField] public float speed = 16f;
 
     Vector3 basePosition;
 

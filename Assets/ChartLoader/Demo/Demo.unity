@@ -875,7 +875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &593521502
 Transform:
   m_ObjectHideFlags: 0
@@ -930,7 +930,7 @@ MonoBehaviour:
   - {fileID: 4014135116710048, guid: 43388091a96bce747b5c4c4f122ae893, type: 3}
   - {fileID: 4413157362768838, guid: 86d778fe174d8eb4488e45e7189f9b26, type: 3}
   - {fileID: 4504917627061404, guid: 4dcbeed3cf1d49244a2db3bcfbd18bd8, type: 3}
-  _path: /ChartLoader/ChartLoader/Songs/Troubles/Troubles.chart
+  _path: /ChartLoader/Billy Talent - Rusted From The Rain/notes.chart
   _cameraMovement: {fileID: 535378776}
   _music: {fileID: 2054393832}
   _starPowerPrefab: {fileID: 4109334711829988, guid: 11bbda1d49dc14b489fa8a659b8ad58c, type: 3}
@@ -1955,7 +1955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1842151625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2114,7 +2114,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d91b2adb355683a468a13cc62eb40509, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5adefc75b3367234f8a5115e13efff33, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

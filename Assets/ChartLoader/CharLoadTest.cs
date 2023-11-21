@@ -18,11 +18,14 @@ public class CharLoadTest : MonoBehaviour
     float baseZ;
 
     public Transform[] notePrefabs;
+    public AudioSource audioSource;
+    private NoteMovement movementScript;
 
     // Start is called before the first frame update
     void Start()
     {
         string chartPath = folderPath + "\\notes.chart";
+        //string audioPath = folderPath + "\\song.ogg";
 
         baseX = transform.position.x;
         baseY = transform.position.y;
@@ -30,11 +33,13 @@ public class CharLoadTest : MonoBehaviour
         basePosition = transform.position;
 
         chartReader = new ChartReader();
-        Chart hisWorldChart = chartReader.ReadChartFile(chartPath);
+        Chart newChart = chartReader.ReadChartFile(chartPath);
+        Note[] expertGuitarNotes = newChart.GetNotes("ExpertSingle");
 
-        Note[] expertGuitarNotes = hisWorldChart.GetNotes("ExpertSingle");
+        movementScript = gameObject.GetComponent<NoteMovement>();
 
         SpawnNotes(expertGuitarNotes);
+        audioSource.Play();
         
     }
 
@@ -54,6 +59,8 @@ public class CharLoadTest : MonoBehaviour
         {
             Vector3 point;
 
+            float z = note.Seconds * movementScript.speed;
+
             if (note.ButtonIndexes[i] == true)
             {
                 /*
@@ -61,7 +68,7 @@ public class CharLoadTest : MonoBehaviour
                  * y = How high the notes are
                  * z = How far the notes are
                  */
-                Vector3 change = new Vector3(i - 2f, 0f, note.Seconds);
+                Vector3 change = new Vector3(i - 2f, 0f, z);
 
                 point = basePosition + change;
 
