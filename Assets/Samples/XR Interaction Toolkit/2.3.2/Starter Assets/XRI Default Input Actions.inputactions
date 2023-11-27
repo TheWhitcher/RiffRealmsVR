@@ -666,6 +666,17 @@
                 },
                 {
                     "name": "",
+                    "id": "97bcb91b-e243-4213-bb8f-29c6da61973b",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "49a23327-a116-48c0-8af9-0d2c50c15a88",
                     "path": "<XRController>{LeftHand}/grip",
                     "interactions": "",
@@ -2100,6 +2111,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Guitar",
+            "id": "a592f26a-3cb4-436a-a2e7-4e4465e82ff8",
+            "actions": [
+                {
+                    "name": "GreenButton",
+                    "type": "Button",
+                    "id": "a87dc33b-b2a4-4014-981d-9940c1760d8e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "336b5b4c-efd8-4f17-a990-3a6ffa5cc1bf",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GreenButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -40,12 +43,15 @@ public class GameManager : MonoBehaviour
     private static int currentMultiplier;
     private static int comboCounter;
     private static int scoreCounter;
-    private static int notesHit;
-    private static int notesMissed;
+    private static float notesHit;
+    private static float notesMissed;
     
     // Private Properties
     private GameState currentState;
     private bool pausedState;
+
+    private static bool isSongFinished = false;
+    public static bool IsSongFinished { get { return isSongFinished; } set { isSongFinished = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +62,7 @@ public class GameManager : MonoBehaviour
         notesHit = 0;
         notesMissed = 0;
         pausedState = false;
+        IsSongFinished = false;
         currentState = GameState.Setup;
     }
 
@@ -70,7 +77,8 @@ public class GameManager : MonoBehaviour
 
             case GameState.Play:
                 SetMultiplier();
-                UpdateUI(); 
+                UpdateUI();
+                SongFinished();
                 break;
 
             case GameState.Ending:
@@ -83,30 +91,42 @@ public class GameManager : MonoBehaviour
         }
 
         // Test inputs
-        if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.H))
+        if(Gamepad.current != null)
         {
-            NoteHit();
-        }
+            if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.H) || Gamepad.current.buttonSouth.isPressed)
+            {
+                NoteHit();
+            }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            NoteMiss();
-        }
+            if (Input.GetKeyDown(KeyCode.F) || Gamepad.current.leftShoulder.isPressed)
+            {
+                NoteMiss();
+            }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            ResetCombo();
-        }
+            if (Input.GetKeyDown(KeyCode.S) || Gamepad.current.rightShoulder.isPressed)
+            {
+                ResetCombo();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            currentState = GameState.Paused;
-            pausedState = !pausedState;
-        }
+            if (Input.GetKeyDown(KeyCode.Escape) || Gamepad.current.startButton.isPressed) 
+            {
+                pausedState = !pausedState;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            currentState = GameState.Ending;
+                if (pausedState)
+                {
+                    currentState = GameState.Paused;
+                }
+                else
+                {
+                    currentState = GameState.Play;
+                    PauseHandler();
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q) || Gamepad.current.selectButton.isPressed)
+            {
+                IsSongFinished = true;
+            }
         }
     }
 
@@ -173,14 +193,24 @@ public class GameManager : MonoBehaviour
 
     private void EndingHandler()
     {
-        int totalNotes = notesHit + notesMissed;
-        float hitPercentage = ((float)notesHit / totalNotes) * 100;
+        float totalNotes = notesHit + notesMissed;
+        float hitPercentage = 0;
+        
+        if (totalNotes > 0)
+        {
+            hitPercentage = math.round((notesHit / totalNotes) * 100);
+        
+            if (float.IsNaN(hitPercentage))
+            {
+                hitPercentage = 0;
+            }
+        }
 
         endMenu.SetActive(true);
         finalScoreText.text = scoreCounter.ToString();
         finalHitText.text = notesHit.ToString();
         finalMissedText.text = notesMissed.ToString();
-        finalHitPercentageText.text = hitPercentage.ToString("#") + "%";
+        finalHitPercentageText.text = hitPercentage.ToString() + "%";
     }
 
     private void PauseHandler()
@@ -201,5 +231,13 @@ public class GameManager : MonoBehaviour
     {
         currentState = GameState.Paused;
         pausedState = !pausedState;
+    }
+    
+    private void SongFinished()
+    {
+        if (isSongFinished)
+        {
+            currentState = GameState.Ending;
+        }
     }
 }
