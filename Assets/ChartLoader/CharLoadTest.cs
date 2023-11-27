@@ -68,6 +68,8 @@ public class CharLoadTest : MonoBehaviour
         {
             Vector3 point;
 
+            float x = i - 2f;
+            float y = 0f;
             float z = note.Seconds * movementScript.speed;
 
             if (note.ButtonIndexes[i] == true)
@@ -77,9 +79,10 @@ public class CharLoadTest : MonoBehaviour
                  * y = How high the notes are
                  * z = How far the notes are
                  */
+
                 Vector3 change = new Vector3(i - 2f, 0f, z);
 
-                point = basePosition + change;
+                point = basePosition - change * transform.parent.gameObject.transform.localScale.x;
 
                 SpawnPrefab(notePrefabs[i], point);
             }

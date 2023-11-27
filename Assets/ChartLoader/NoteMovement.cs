@@ -28,6 +28,8 @@ public class NoteMovement : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        float scaleFactor = transform.parent.gameObject.transform.localScale.x;
+
+        transform.Translate(Vector3.back * speed * scaleFactor * Time.deltaTime);
     }
 }
