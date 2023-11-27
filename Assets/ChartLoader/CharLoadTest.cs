@@ -3,24 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using ChartLoader.NET.Utils;
 using ChartLoader.NET.Framework;
+using System.IO;
 
 public class CharLoadTest : MonoBehaviour
 {
     public static ChartReader chartReader;
 
-    public Transform[] notePrefabs;
+    [SerializeField] string folderPath = "";
 
-    private string chartPath = "Assets\\ChartLoader\\Gakusaku Shiki\\notes.chart";
+    Vector3 basePosition;
+    float baseX;
+    float baseY;
+    float baseZ;
+
+    public Transform[] notePrefabs;
+    public AudioSource audioSource;
+    //public AudioClip audioClip;
+    private NoteMovement movementScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        chartReader = new ChartReader();
-        Chart hisWorldChart = chartReader.ReadChartFile(chartPath);
+        string chartPath = folderPath + "\\notes.chart";
+        //string audioPath = folderPath + "\\song.ogg";
 
-        Note[] expertGuitarNotes = hisWorldChart.GetNotes("ExpertSingle");
+        baseX = transform.position.x;
+        baseY = transform.position.y;
+        baseZ = transform.position.z;
+        basePosition = transform.position;
+
+        chartReader = new ChartReader();
+        Chart newChart = chartReader.ReadChartFile(chartPath);
+        Note[] expertGuitarNotes = newChart.GetNotes("ExpertSingle");
+
+        movementScript = gameObject.GetComponent<NoteMovement>();
+
+        // Set the audio
+        //LoadSong(audioPath);
+        //audioSource.clip = audioClip;
+
+        if (audioSource.clip == null)
+        {
+            Debug.LogError("No audio clip.");
+        }
 
         SpawnNotes(expertGuitarNotes);
+        audioSource.Play();
         
     }
 
@@ -40,6 +68,10 @@ public class CharLoadTest : MonoBehaviour
         {
             Vector3 point;
 
+            float x = i - 2f;
+            float y = 0f;
+            float z = note.Seconds * movementScript.speed;
+
             if (note.ButtonIndexes[i] == true)
             {
                 /*
@@ -47,7 +79,10 @@ public class CharLoadTest : MonoBehaviour
                  * y = How high the notes are
                  * z = How far the notes are
                  */
-                point = new Vector3(i - 2f, 0f, note.Seconds);
+
+                Vector3 change = new Vector3(i - 2f, 0f, z);
+
+                point = basePosition - change * transform.parent.gameObject.transform.localScale.x;
 
                 SpawnPrefab(notePrefabs[i], point);
             }
@@ -60,6 +95,37 @@ public class CharLoadTest : MonoBehaviour
         Transform tmp = Instantiate(prefab);
         tmp.SetParent(transform);
         tmp.position = point;
+    }
+
+
+    private void LoadAudioClipFromFile(string path)
+    {
+        AudioClip audioClip = null;
+        WWW www = new WWW(path);
+        while (!www.isDone) { }
+        audioClip = www.GetAudioClip();
+
+        Debug.Log(path);
+
+        audioSource.clip = audioClip;
+    }
+
+    private void LoadSong(string path)
+    {
+        StartCoroutine(LoadSongCoroutine(path));
+    }
+
+    IEnumerator LoadSongCoroutine(string path)
+    {
+        AudioClip audioClip = null;
+        WWW www = new WWW(path);
+        yield return www;
+
+        audioClip = www.GetAudioClip();
+
+        Debug.Log(path);
+
+        audioSource.clip = audioClip;
     }
 
 }
