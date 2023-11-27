@@ -45,10 +45,10 @@ public class GameManager : MonoBehaviour
     private static int scoreCounter;
     private static float notesHit;
     private static float notesMissed;
-    
+
     // Private Properties
     private GameState currentState;
-    private bool pausedState;
+    private bool isPaused = false;
 
     private static bool isSongFinished = false;
     public static bool IsSongFinished { get { return isSongFinished; } set { isSongFinished = value; } }
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         scoreCounter = 0;
         notesHit = 0;
         notesMissed = 0;
-        pausedState = false;
+        isPaused = false;
         IsSongFinished = false;
         currentState = GameState.Setup;
     }
@@ -90,43 +90,25 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        // Test inputs
-        if(Gamepad.current != null)
+        if (Input.GetButtonDown("Start")) 
         {
-            if (Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.H) || Gamepad.current.buttonSouth.isPressed)
-            {
-                NoteHit();
-            }
+            isPaused = !isPaused;
 
-            if (Input.GetKeyDown(KeyCode.F) || Gamepad.current.leftShoulder.isPressed)
+            if (isPaused)
             {
-                NoteMiss();
+                currentState = GameState.Paused;
             }
-
-            if (Input.GetKeyDown(KeyCode.S) || Gamepad.current.rightShoulder.isPressed)
+            else
             {
-                ResetCombo();
+                currentState = GameState.Play;
+                PauseHandler();
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.Escape) || Gamepad.current.startButton.isPressed) 
-            {
-                pausedState = !pausedState;
-
-                if (pausedState)
-                {
-                    currentState = GameState.Paused;
-                }
-                else
-                {
-                    currentState = GameState.Play;
-                    PauseHandler();
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Q) || Gamepad.current.selectButton.isPressed)
-            {
-                IsSongFinished = true;
-            }
+        // For testing
+        if (Input.GetButtonDown("Select"))
+        {
+            IsSongFinished = true;
         }
     }
 
@@ -215,7 +197,7 @@ public class GameManager : MonoBehaviour
 
     private void PauseHandler()
     {
-        if (pausedState)
+        if (isPaused)
         {
             // Paused
             pauseMenu.SetActive(true);
@@ -229,8 +211,8 @@ public class GameManager : MonoBehaviour
 
     public void CloseClicked()
     {
-        currentState = GameState.Paused;
-        pausedState = !pausedState;
+        currentState = GameState.Play;
+        isPaused = false;
     }
     
     private void SongFinished()
