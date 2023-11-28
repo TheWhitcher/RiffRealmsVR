@@ -12,6 +12,8 @@ public class NoteHitArea : MonoBehaviour
     private GameObject blueButton;
     private GameObject orangeButton;
 
+    private Dictionary<string, Color> originalButtonColors = new Dictionary<string, Color>();
+
     void Start()
     {
         noteList = new List<GameObject>();
@@ -21,6 +23,12 @@ public class NoteHitArea : MonoBehaviour
         yellowButton = transform.Find("Yellow").gameObject;
         blueButton = transform.Find("Blue").gameObject;
         orangeButton = transform.Find("Orange").gameObject;
+
+        originalButtonColors.Add("GreenButton", greenButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        originalButtonColors.Add("RedButton", redButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        originalButtonColors.Add("YellowButton", yellowButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        originalButtonColors.Add("BlueButton", blueButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        originalButtonColors.Add("OrangeButton", orangeButton.transform.Find("button").GetComponent<Renderer>().material.color);
     }
 
 
@@ -70,16 +78,15 @@ public class NoteHitArea : MonoBehaviour
     {
         foreach (GameObject note in noteList)
         {
-            if (note.name.Contains(colour))
+            if (note != null && note.name.Contains(colour))
             {
-                note.gameObject.SetActive(false);
                 noteList.Remove(note);
+                Destroy(note);
                 GameManager.NoteHit();
-                Debug.Log("Loop Done");
                 return;
             }
         }
-        Debug.Log("Loop Done");
+
         GameManager.ResetCombo();
         return;
     }
@@ -93,13 +100,19 @@ public class NoteHitArea : MonoBehaviour
     }
     private void ActivateAndDeactivateButton(GameObject button, string inputButton)
     {
-        if (Input.GetButton(inputButton))
+        Renderer buttonColor = button.transform.Find("button").GetComponent<Renderer>();
+        
+        if (buttonColor != null)
         {
-            button.SetActive(true);
-        }
-        else
-        {
-            button.SetActive(false);
+            if (Input.GetButtonDown(inputButton))
+            {
+                buttonColor.material.color = buttonColor.material.color * 5f;
+            }
+            else if (Input.GetButtonUp(inputButton))
+            {
+                buttonColor.material.color = originalButtonColors[inputButton];
+
+            }
         }
     }
 }

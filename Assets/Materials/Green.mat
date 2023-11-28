@@ -78,6 +78,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.083832465, g: 0.7924528, b: 0, a: 1}
+    - _Color: {r: 0.077970296, g: 0.75, b: 0, a: 1}
     - _EmissionColor: {r: 0.1186825, g: 1, b: 0, a: 1}
   m_BuildTextureStacks: []
