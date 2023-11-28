@@ -42,13 +42,14 @@ public class NoteHitArea : MonoBehaviour
 
         if (Input.GetButtonDown("StrumUp") || Input.GetButtonDown("StrumDown"))
         {
+            Debug.Log("Strumming");
             StrumLogic();
         }
     }
 
     private void OnTriggerExit(Collider note)
     {
-        if (note.tag == "Note")
+        if (note != null && note.tag == "Note")
         {
             noteList.Remove(note.gameObject);
 
@@ -59,7 +60,7 @@ public class NoteHitArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider note)
     {
-        if (note.tag == "Note")
+        if (!noteList.Contains(note.gameObject) && note.tag == "Note")
         {
             noteList.Add(note.gameObject);
         }
@@ -101,7 +102,7 @@ public class NoteHitArea : MonoBehaviour
     private void ActivateAndDeactivateButton(GameObject button, string inputButton)
     {
         Renderer buttonColor = button.transform.Find("button").GetComponent<Renderer>();
-        
+            
         if (buttonColor != null)
         {
             if (Input.GetButtonDown(inputButton))
