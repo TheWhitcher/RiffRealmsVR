@@ -24,7 +24,7 @@ public class CharLoadTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string chartPath = folderPath + "\\notes.chart";
+        string chartPath = Application.dataPath + "\\StreamingAssets\\" + folderPath + "\\notes.chart";
         //string audioPath = folderPath + "\\song.ogg";
 
         baseX = transform.position.x;
