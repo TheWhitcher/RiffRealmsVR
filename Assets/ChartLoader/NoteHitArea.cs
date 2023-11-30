@@ -11,8 +11,9 @@ public class NoteHitArea : MonoBehaviour
     private GameObject yellowButton;
     private GameObject blueButton;
     private GameObject orangeButton;
+    private bool isStrumming = false;
 
-    private Dictionary<string, Color> originalButtonColors = new Dictionary<string, Color>();
+    private Dictionary<string, Color> buttonColors = new Dictionary<string, Color>();
 
     void Start()
     {
@@ -24,11 +25,19 @@ public class NoteHitArea : MonoBehaviour
         blueButton = transform.Find("Blue").gameObject;
         orangeButton = transform.Find("Orange").gameObject;
 
-        originalButtonColors.Add("GreenButton", greenButton.transform.Find("button").GetComponent<Renderer>().material.color);
-        originalButtonColors.Add("RedButton", redButton.transform.Find("button").GetComponent<Renderer>().material.color);
-        originalButtonColors.Add("YellowButton", yellowButton.transform.Find("button").GetComponent<Renderer>().material.color);
-        originalButtonColors.Add("BlueButton", blueButton.transform.Find("button").GetComponent<Renderer>().material.color);
-        originalButtonColors.Add("OrangeButton", orangeButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        // Original Colours
+        buttonColors.Add("GreenButton", greenButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        buttonColors.Add("RedButton", redButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        buttonColors.Add("YellowButton", yellowButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        buttonColors.Add("BlueButton", blueButton.transform.Find("button").GetComponent<Renderer>().material.color);
+        buttonColors.Add("OrangeButton", orangeButton.transform.Find("button").GetComponent<Renderer>().material.color);
+
+        // Modified Colours
+        buttonColors.Add("GreenButtonPressed", greenButton.transform.Find("button").GetComponent<Renderer>().material.color * 2f);
+        buttonColors.Add("RedButtonPressed", redButton.transform.Find("button").GetComponent<Renderer>().material.color * 5f);
+        buttonColors.Add("YellowButtonPressed", yellowButton.transform.Find("button").GetComponent<Renderer>().material.color * 2f);
+        buttonColors.Add("BlueButtonPressed", blueButton.transform.Find("button").GetComponent<Renderer>().material.color * 5f);
+        buttonColors.Add("OrangeButtonPressed", orangeButton.transform.Find("button").GetComponent<Renderer>().material.color * 1.5f);
     }
 
 
@@ -40,16 +49,12 @@ public class NoteHitArea : MonoBehaviour
         ActivateAndDeactivateButton(blueButton, "BlueButton");
         ActivateAndDeactivateButton(orangeButton, "OrangeButton");
 
-        if (Input.GetButtonDown("StrumUp") || Input.GetButtonDown("StrumDown"))
-        {
-            Debug.Log("Strumming");
-            StrumLogic();
-        }
+        CheckStrum();
     }
 
     private void OnTriggerExit(Collider note)
     {
-        if (note != null && note.tag == "Note")
+        if (noteList.Contains(note.gameObject) && note.tag == "Note")
         {
             noteList.Remove(note.gameObject);
 
@@ -99,21 +104,35 @@ public class NoteHitArea : MonoBehaviour
             FindNote(colour);
         }
     }
+
     private void ActivateAndDeactivateButton(GameObject button, string inputButton)
     {
         Renderer buttonColor = button.transform.Find("button").GetComponent<Renderer>();
-            
+        
         if (buttonColor != null)
         {
             if (Input.GetButtonDown(inputButton))
             {
-                buttonColor.material.color = buttonColor.material.color * 5f;
+                buttonColor.material.color = buttonColors[inputButton + "Pressed"];
             }
             else if (Input.GetButtonUp(inputButton))
             {
-                buttonColor.material.color = originalButtonColors[inputButton];
+                buttonColor.material.color = buttonColors[inputButton];
 
             }
+        }
+    }
+
+    private void CheckStrum()
+    {
+        if (Input.GetAxis("Strum") != 0 && !isStrumming)
+        {
+            isStrumming = true;
+            StrumLogic();
+        }
+        else if (Input.GetAxis("Strum") == 0)
+        {
+            isStrumming = false;
         }
     }
 }

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject endMenu;
     [SerializeField] Animator loadingScreen;
+    [SerializeField] LineRenderer controllerLine;
 
     [Header("Game UI")]
     [SerializeField] TextMeshProUGUI comboText;
@@ -76,16 +77,19 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Play:
+                controllerLine.enabled = false;
                 SetMultiplier();
                 UpdateUI();
                 SongFinished();
                 break;
 
             case GameState.Ending:
+                controllerLine.enabled = true;
                 EndingHandler();
                 break;
 
             case GameState.Paused:
+                controllerLine.enabled = false;
                 PauseHandler();
                 break;
         }
@@ -211,8 +215,8 @@ public class GameManager : MonoBehaviour
 
     public void CloseClicked()
     {
-        currentState = GameState.Play;
         isPaused = false;
+        currentState = GameState.Play;
     }
     
     private void SongFinished()

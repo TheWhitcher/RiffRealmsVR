@@ -2141,6 +2141,17 @@
                     "action": "GreenButton",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4c8256a-1817-4b2c-81da-31d3fdb59024",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GreenButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
