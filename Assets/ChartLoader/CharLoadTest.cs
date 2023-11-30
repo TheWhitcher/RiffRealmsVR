@@ -9,7 +9,7 @@ public class CharLoadTest : MonoBehaviour
 {
     public static ChartReader chartReader;
 
-    [SerializeField] string folderPath = "";
+    [SerializeField] string songFolderName = "";
 
     Vector3 basePosition;
     float baseX;
@@ -24,7 +24,7 @@ public class CharLoadTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string chartPath = Application.dataPath + "\\StreamingAssets\\" + folderPath + "\\notes.chart";
+        string chartPath = Application.dataPath + "\\StreamingAssets\\" + songFolderName + "\\notes.chart";
         //string audioPath = folderPath + "\\song.ogg";
 
         baseX = transform.position.x;
