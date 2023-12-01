@@ -125,12 +125,12 @@ public class NoteHitArea : MonoBehaviour
 
     private void CheckStrum()
     {
-        if (Input.GetAxis("Strum") != 0 && !isStrumming)
+        if (Input.GetAxis("Strum") != 0 && !isStrumming || Input.GetButtonDown("KeyboardStrum") && !isStrumming)
         {
             isStrumming = true;
             StrumLogic();
         }
-        else if (Input.GetAxis("Strum") == 0)
+        else if (Input.GetAxis("Strum") == 0 || Input.GetButtonUp("KeyboardStrum"))
         {
             isStrumming = false;
         }
