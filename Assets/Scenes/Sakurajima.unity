@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18363908, g: 0.22912063, b: 0.30520618, a: 1}
+  m_IndirectSpecularColor: {r: 0.18363947, g: 0.22912148, b: 0.3052073, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16659,6 +16659,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bd2de007734d60459ec13afcc788a5f, type: 3}
+--- !u!1 &903476487 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6312804171277335612, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+  m_PrefabInstance: {fileID: 1486149723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &911947495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25674,6 +25679,10 @@ PrefabInstance:
       propertyPath: folderPath
       value: Assets/ChartLoader/Gakusaku Shiki
       objectReference: {fileID: 0}
+    - target: {fileID: 4375305978673476300, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+      propertyPath: songPlayer
+      value: 
+      objectReference: {fileID: 903476487}
     - target: {fileID: 4375305978673476300, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: songFolderName
       value: Gakusaku Shiki

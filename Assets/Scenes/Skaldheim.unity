@@ -10164,6 +10164,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9017248549243845753, guid: 731371765aee5c74698dbc5348f9e050, type: 3}
   m_PrefabInstance: {fileID: 643412338}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &643917330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6312804171277335612, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+  m_PrefabInstance: {fileID: 1693614614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &647382667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28007,6 +28012,14 @@ PrefabInstance:
     - target: {fileID: 4375305978673476300, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: folderPath
       value: Assets/ChartLoader/Tavern Loop One
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375305978673476300, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+      propertyPath: songPlayer
+      value: 
+      objectReference: {fileID: 643917330}
+    - target: {fileID: 4375305978673476300, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+      propertyPath: songFolderName
+      value: Tavern Loop One
       objectReference: {fileID: 0}
     - target: {fileID: 4541885437576201424, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: m_Enabled

@@ -4,17 +4,19 @@ using UnityEngine;
 using ChartLoader.NET.Utils;
 using ChartLoader.NET.Framework;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class CharLoadTest : MonoBehaviour
 {
     public static ChartReader chartReader;
 
     [SerializeField] string songFolderName = "";
+    [SerializeField] GameObject songPlayer;
 
     Vector3 basePosition;
-    float baseX;
-    float baseY;
-    float baseZ;
+    //float baseX;
+    //float baseY;
+    //float baseZ;
 
     public Transform[] notePrefabs;
     public AudioSource audioSource;
@@ -27,9 +29,9 @@ public class CharLoadTest : MonoBehaviour
         string chartPath = Application.dataPath + "\\StreamingAssets\\" + songFolderName + "\\notes.chart";
         //string audioPath = folderPath + "\\song.ogg";
 
-        baseX = transform.position.x;
-        baseY = transform.position.y;
-        baseZ = transform.position.z;
+        //baseX = transform.position.x;
+        //baseY = transform.position.y;
+        //baseZ = transform.position.z;
         basePosition = transform.position;
 
         chartReader = new ChartReader();
@@ -69,9 +71,8 @@ public class CharLoadTest : MonoBehaviour
             Vector3 point;
 
             float x = i - 2f;
-            float y = 0f;
+            //float y = 0f;
             float z = note.Seconds * movementScript.speed;
-
             if (note.ButtonIndexes[i] == true)
             {
                 /*
@@ -82,50 +83,59 @@ public class CharLoadTest : MonoBehaviour
 
                 Vector3 change = new Vector3(i - 2f, 0f, z);
 
-                point = basePosition - change * transform.parent.gameObject.transform.localScale.x;
+                if (SceneManager.GetActiveScene().name == "Sakurajima")
+                {
+                    point = basePosition - change * songPlayer.transform.localScale.x;
+
+                }
+                else
+                {
+                    point = basePosition + change * songPlayer.transform.localScale.x;
+                }
 
                 SpawnPrefab(notePrefabs[i], point);
             }
         }
+        //transform.rotation = songPlayer.transform.rotation;
     }
 
     // Spawns a prefab.
     public void SpawnPrefab(Transform prefab, Vector3 point)
     {
         Transform tmp = Instantiate(prefab);
-        tmp.SetParent(transform);
         tmp.position = point;
+        tmp.SetParent(transform);
     }
 
 
-    private void LoadAudioClipFromFile(string path)
-    {
-        AudioClip audioClip = null;
-        WWW www = new WWW(path);
-        while (!www.isDone) { }
-        audioClip = www.GetAudioClip();
+    //private void LoadAudioClipFromFile(string path)
+    //{
+    //    AudioClip audioClip = null;
+    //    WWW www = new WWW(path);
+    //    while (!www.isDone) { }
+    //    audioClip = www.GetAudioClip();
 
-        Debug.Log(path);
+    //    Debug.Log(path);
 
-        audioSource.clip = audioClip;
-    }
+    //    audioSource.clip = audioClip;
+    //}
 
-    private void LoadSong(string path)
-    {
-        StartCoroutine(LoadSongCoroutine(path));
-    }
+    //private void LoadSong(string path)
+    //{
+    //    StartCoroutine(LoadSongCoroutine(path));
+    //}
 
-    IEnumerator LoadSongCoroutine(string path)
-    {
-        AudioClip audioClip = null;
-        WWW www = new WWW(path);
-        yield return www;
+    //IEnumerator LoadSongCoroutine(string path)
+    //{
+    //    AudioClip audioClip = null;
+    //    WWW www = new WWW(path);
+    //    yield return www;
 
-        audioClip = www.GetAudioClip();
+    //    audioClip = www.GetAudioClip();
 
-        Debug.Log(path);
+    //    Debug.Log(path);
 
-        audioSource.clip = audioClip;
-    }
+    //    audioSource.clip = audioClip;
+    //}
 
 }
