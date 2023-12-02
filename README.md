@@ -62,33 +62,29 @@ Frankentar:
 
 ## Asset Licenses
 
--Unity Store Assets
-	Name: 	Real Stars Skybox Lite
-	Author:	Geoff Dallimore
-	Link: 	https://assetstore.unity.com/packages/3d/environments/sci-fi/real-stars-skybox-lite-116333
+Unity Store Assets
+-Name: 	Real Stars Skybox Lite
+-Author:	Geoff Dallimore
+-Link: 	https://assetstore.unity.com/packages/3d/environments/sci-fi/real-stars-skybox-lite-116333
 
-	Name: 	Magic Effects FREE
-	Author: Hovl Studio
-	Link: 	https://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
-	
-	Name: 	ChartLoader ($19.99)
-	Author: CYPRONET TECHNOLOGIES SAS
-	Link: 	https://assetstore.unity.com/packages/tools/input-management/chartloader-87554
+-Name: 	Magic Effects FREE
+-Author: Hovl Studio
+-Link: 	https://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
 
--3D Models
-	Name: 	Guitar Hero Controller
-	Author:	CamSear16
-	Link:	https://sketchfab.com/3d-models/guitar-hero-controller-bcac8f9f95a44008ad90f470326e5fca
+-Name: 	ChartLoader ($19.99)
+-Author: CYPRONET TECHNOLOGIES SAS
+-Link: 	https://assetstore.unity.com/packages/tools/input-management/chartloader-87554
 
--Music & SFX
-	Name: 	Victory (Rock Guitar Tapping)
-	Author: Pixaby
-	Link: 	https://pixabay.com/sound-effects/victory-rock-guitar-tapping-104575/
-	
-	Name: 	Chikuzen Biwa Music Collection 'Shinonome (300 yen) 
-	Author: amane5269
-	Link: 	https://booth.pm/ja/items/1126871
-	
-	Name: 
-	Author: 
-	Link: 
+3D Models
+-Name: 	Guitar Hero Controller
+-Author:	CamSear16
+-Link:	https://sketchfab.com/3d-models/guitar-hero-controller-bcac8f9f95a44008ad90f470326e5fca
+
+Music & SFX
+-Name: 	Victory (Rock Guitar Tapping)
+-Author: Pixaby
+-Link: 	https://pixabay.com/sound-effects/victory-rock-guitar-tapping-104575/
+
+-Name: 	Chikuzen Biwa Music Collection 'Shinonome (300 yen) 
+-Author: amane5269
+-Link: 	https://booth.pm/ja/items/1126871
