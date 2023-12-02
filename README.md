@@ -62,7 +62,6 @@ Frankentar:
 
 ## Asset Licenses
 
-Unity Store Assets:
 Real Stars Skybox Lite
 - Author:	Geoff Dallimore
 - Link: 	https://assetstore.unity.com/packages/3d/environments/sci-fi/real-stars-skybox-lite-116333
@@ -75,12 +74,10 @@ ChartLoader ($19.99)
 - Author: CYPRONET TECHNOLOGIES SAS
 - Link: 	https://assetstore.unity.com/packages/tools/input-management/chartloader-87554
 
-3D Models:
 Guitar Hero Controller
 - Author:	CamSear16
 - Link:	https://sketchfab.com/3d-models/guitar-hero-controller-bcac8f9f95a44008ad90f470326e5fca
 
-Music & SFX:
 Victory (Rock Guitar Tapping)
 - Author: Pixaby
 - Link: 	https://pixabay.com/sound-effects/victory-rock-guitar-tapping-104575/
