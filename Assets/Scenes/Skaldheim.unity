@@ -1991,7 +1991,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 1285169910}
   endMenu: {fileID: 552122616}
   loadingScreen: {fileID: 476859836}
-  controllerLine: {fileID: 1153461486}
+  controllerLine: {fileID: 1190497334}
+  song: {fileID: 955587947}
   comboText: {fileID: 326429004}
   scoreText: {fileID: 1179623046}
   multiplierText: {fileID: 695594528}
@@ -15312,6 +15313,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!82 &955587947 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5690451017982896417, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+  m_PrefabInstance: {fileID: 1693614614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &955632379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19128,7 +19134,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9154921790526369697, guid: a264b0fff5671d143b4fda50b5105a3d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 188.51
+      value: 187.15
       objectReference: {fileID: 0}
     - target: {fileID: 9154921790526369697, guid: a264b0fff5671d143b4fda50b5105a3d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19163,11 +19169,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a264b0fff5671d143b4fda50b5105a3d, type: 3}
---- !u!120 &1153461486 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 3449982486070054391, guid: a264b0fff5671d143b4fda50b5105a3d, type: 3}
-  m_PrefabInstance: {fileID: 1153461485}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1161662670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19581,6 +19582,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7248438036520555472, guid: 2798960de8f2c4348bebac73996e699c, type: 3}
   m_PrefabInstance: {fileID: 1189903501}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1190497334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5257727906004885309, guid: a264b0fff5671d143b4fda50b5105a3d, type: 3}
+  m_PrefabInstance: {fileID: 1153461485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1190967801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28009,6 +28021,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4232669197387641964, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4375305978673476300, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: folderPath
       value: Assets/ChartLoader/Tavern Loop One
@@ -28029,6 +28045,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 118f0e74bcdf81443b34c72897dffca8, type: 3}
+    - target: {fileID: 5690451017982896417, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5697199495061035500, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -28071,11 +28091,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8808296347152123586, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.85
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8808296347152123586, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 192.15
+      value: 192.5
       objectReference: {fileID: 0}
     - target: {fileID: 8808296347152123586, guid: 6d7a2dfc676b6b740bb7982a9f5ab2dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -34933,7 +34953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1656373958694431751, guid: 4272baa06b6b59e45be72e02b148d42b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 191
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 1656373958694431751, guid: 4272baa06b6b59e45be72e02b148d42b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -34965,7 +34985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2707272557602818940, guid: 4272baa06b6b59e45be72e02b148d42b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 191
+      value: 190
       objectReference: {fileID: 0}
     - target: {fileID: 2707272557602818940, guid: 4272baa06b6b59e45be72e02b148d42b, type: 3}
       propertyPath: m_AnchoredPosition.x

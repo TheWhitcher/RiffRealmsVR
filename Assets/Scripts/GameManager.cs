@@ -9,6 +9,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject endMenu;
     [SerializeField] Animator loadingScreen;
-    [SerializeField] LineRenderer controllerLine;
+    [SerializeField] XRRayInteractor controllerLine;
+    [SerializeField] AudioSource song;
 
     [Header("Game UI")]
     [SerializeField] TextMeshProUGUI comboText;
@@ -51,9 +53,6 @@ public class GameManager : MonoBehaviour
     private GameState currentState;
     private bool isPaused = false;
 
-    private static bool isSongFinished = false;
-    public static bool IsSongFinished { get { return isSongFinished; } set { isSongFinished = value; } }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +62,6 @@ public class GameManager : MonoBehaviour
         notesHit = 0;
         notesMissed = 0;
         isPaused = false;
-        IsSongFinished = false;
         currentState = GameState.Setup;
     }
 
@@ -89,7 +87,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Paused:
-                controllerLine.enabled = false;
+                controllerLine.enabled = true;
                 PauseHandler();
                 break;
         }
@@ -107,12 +105,6 @@ public class GameManager : MonoBehaviour
                 currentState = GameState.Play;
                 PauseHandler();
             }
-        }
-
-        // For testing
-        if (Input.GetButtonDown("Select"))
-        {
-            IsSongFinished = true;
         }
     }
 
@@ -221,7 +213,7 @@ public class GameManager : MonoBehaviour
     
     private void SongFinished()
     {
-        if (isSongFinished)
+        if (!song.isPlaying)
         {
             currentState = GameState.Ending;
         }

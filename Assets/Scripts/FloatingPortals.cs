@@ -12,8 +12,8 @@ public class FloatingPortals : MonoBehaviour
     private float positionY;
     private float positionZ;
     private float distancePerFrame;
-    private int direction;
     private float initialPositionY;
+    private int direction;
 
     private bool isDirectionUp = true;
     private float currentTime = 0f;
@@ -29,7 +29,7 @@ public class FloatingPortals : MonoBehaviour
         currentTime = Time.time;
         
         direction = Random.Range(1, 3);
-        distancePerFrame = Random.Range(0.0001f, 0.0005f);
+        distancePerFrame = Random.Range(0.0001f, 0.0002f);
         if (direction == 1)
         {
             isDirectionUp = true;

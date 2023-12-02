@@ -137,10 +137,10 @@ InputManager:
     m_Name: KeyboardStrum
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: down
+    negativeButton: 
     positiveButton: up
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: down
     gravity: 0
     dead: 0
     sensitivity: 0.1

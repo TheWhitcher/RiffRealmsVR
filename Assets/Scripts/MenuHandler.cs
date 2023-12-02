@@ -10,8 +10,6 @@ public class MenuHandler : MonoBehaviour
     [SerializeField] GameObject optionsMenu;
     [SerializeField] Animator loadingScreen;
 
-    private AnimatorStateInfo stateInfo;
-
     public void DeselectButton()
     {
         // Works but if the click is released outside the button it remains selected.
@@ -33,6 +31,10 @@ public class MenuHandler : MonoBehaviour
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
+    public void MoveToUnknown()
+    {
+        SceneManager.LoadScene("Unknown", LoadSceneMode.Single);
+    }
     public void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -68,6 +70,11 @@ public class MenuHandler : MonoBehaviour
     public void ChangeToSakurajima()
     {
         loadingScreen.SetBool("ChangeToSakurajima", true);
+    }
+
+    public void ChangeToUnknown()
+    {
+        loadingScreen.SetBool("ChangeToUnknown", true);
     }
 
     public void ChangeToRestart()

@@ -50,7 +50,7 @@ public class CharLoadTest : MonoBehaviour
         }
 
         SpawnNotes(expertGuitarNotes);
-        audioSource.Play();
+        //audioSource.Play();
         
     }
 
