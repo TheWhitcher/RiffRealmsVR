@@ -208,6 +208,7 @@ public class GameManager : MonoBehaviour
     public void CloseClicked()
     {
         isPaused = false;
+        PauseHandler();
         currentState = GameState.Play;
     }
     

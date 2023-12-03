@@ -9,9 +9,9 @@ public class NoteMovement : MonoBehaviour
 
     Vector3 basePosition;
 
-    float x = 0;
-    float y = 0;
-    float z = 0;
+    //float x = 0;
+    //float y = 0;
+    //float z = 0;
 
     void Start()
     {

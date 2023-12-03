@@ -60,7 +60,7 @@ Frankentar:
 - Tilt:				N/A
 - Whammy Bar:		N/A
 
-## Asset Licenses
+## Acquired Assets
 
 Real Stars Skybox Lite
 - Author:	Geoff Dallimore
